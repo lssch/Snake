@@ -3,11 +3,11 @@
 
 const int rounds_before_snake_gets_longer{5};
 
-cv::Mat image = cv::Mat(cv::Size(800, 800), CV_8UC3, {0,0,0});
-Fields field{image, 40};
+cv::Mat image = cv::Mat(cv::Size(600, 600), CV_8UC3, {0,0,0});
+Fields field{image, 24};
 Snake snake{field, 5};
 
-void autoplayer() {
+[[maybe_unused]] void autoplayer() {
   if (snake.getBody().front().x == field.grid_size.x && snake.getDirection() == Direction::EAST)
     snake.setDirection(Direction::SOUTH);
   else if (snake.getBody().front().x == field.grid_size.x && snake.getDirection() == Direction::SOUTH)
@@ -19,7 +19,7 @@ void autoplayer() {
   cv::waitKey(50);
 }
 
-void userplayer() {
+[[maybe_unused]] void userplayer() {
   snake.setDirection(cv::waitKey(100));
 }
 
@@ -34,8 +34,8 @@ int main() {
     } else
       snake.move(true);
     cv::imshow("Snake von wish", image);
-    //autoplayer();
-    userplayer();
+    autoplayer();
+    //userplayer();
     i++;
   }
 #pragma clang diagnostic pop

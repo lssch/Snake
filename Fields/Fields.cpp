@@ -24,7 +24,8 @@ void Fields::drawGrid() {
 }
 
 cv::Point2i Fields::gridToPixel(cv::Point2i position) {
-  return {position.x*img.cols/grid_size.x - grid_size.x, position.y*img.rows/grid_size.y - grid_size.y};
+  //return {position.x*img.cols/grid_size.x - img.cols/(2*grid_size.x), position.y*img.rows/grid_size.y - img.cols/(2*grid_size.y)};
+  return {static_cast<int>(img.cols/grid_size.x*(position.x - 0.5f)), static_cast<int>(img.rows/grid_size.y*(position.y - 0.5f))};
 }
 
 void Fields::update(std::vector<cv::Point2i> &body) {
